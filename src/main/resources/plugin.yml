@@ -1,0 +1,24 @@
+name: djinqPing
+version: 1.0.0
+main: dev.djinq.djinqping.DjinqPing
+api-version: '1.21'
+description: Lightweight ping command for Paper.
+author: djinq
+website: https://djinq.dev
+
+commands:
+  ping:
+    description: Shows a player's ping.
+    usage: /ping [player|reload]
+    permission: djinqping.use
+
+permissions:
+  djinqping.use:
+    description: Allows /ping.
+    default: true
+  djinqping.others:
+    description: Allows /ping <player>.
+    default: true
+  djinqping.reload:
+    description: Allows /ping reload.
+    default: op
