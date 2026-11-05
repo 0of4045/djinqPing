@@ -1,14 +1,17 @@
 # djinqPing
 
-A lightweight Paper plugin for checking player ping with `/ping`.
+A small and lightweight ping command plugin for Paper servers.
+
+Check your own ping with `/ping`, or check another online player's ping with `/ping <player>`. Messages and prefix are easy to edit.
 
 Made by djinq ~ [djinq.dev](https://djinq.dev)
 
 ## Installation
 
-1. Download `djinqPing.jar`.
-2. Place it in your server `plugins` folder.
-3. Restart the server.
+1. Drop `djinqPing.jar` into your server's `plugins` folder.
+2. Start the server once.
+3. Edit `plugins/djinqPing/messages.yml` however you want.
+4. Run `/ping reload` or restart the server.
 
 ## Commands
 
@@ -18,16 +21,16 @@ Made by djinq ~ [djinq.dev](https://djinq.dev)
 | `/ping <player>` | Shows an online player's ping. |
 | `/ping reload` | Reloads `messages.yml`. |
 
-## Permission
+## Permissions
 
-| Permission | Description | Default |
-| --- | --- | --- |
-| `djinqping.use` | Allows `/ping`. | `true` |
-| `djinqping.others` | Allows `/ping <player>`. | `true` |
-| `djinqping.reload` | Allows `/ping reload`. | `op` |
+| Permission | Description |
+| --- | --- |
+| `djinqping.use` | Allows `/ping`. |
+| `djinqping.others` | Allows `/ping <player>`. |
+| `djinqping.reload` | Allows `/ping reload`. |
 
 ## Configuration
 
-`messages.yml` contains the prefix and chat messages. Use `/ping reload` after editing it.
+`messages.yml` contains one `prefix` setting. It is added automatically to every chat message. Use `/ping reload` after editing it.
 
-Works with Paper 1.21.11 through 26.3. Java 21 is required for Paper 1.21.11; use the Java version required by your Paper build for newer versions.
+Built for Paper 1.21.11 through 26.3. Use Java 21 for Paper 1.21.11, or Java 25 for Paper 26.1+.
