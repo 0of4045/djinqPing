@@ -63,7 +63,7 @@ public final class PingCommand implements CommandExecutor, TabCompleter {
         }
 
         sender.sendMessage(messages.message(
-                "ping",
+                "player-ping",
                 "player", target.getName(),
                 "ping", String.valueOf(target.getPing())
         ));
