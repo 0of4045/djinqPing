@@ -1,36 +1,49 @@
 package dev.djinq.djinqping;
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
-import net.kyori.adventure.text.Component;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MessageManager {
     private final JavaPlugin plugin;
-    private FileConfiguration messages;
+    private YamlConfiguration messages;
     private String prefix;
 
     public MessageManager(JavaPlugin plugin) {
         this.plugin = plugin;
-        reload();
     }
 
-    public void reload() {
-        messages = org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(
-                new java.io.File(plugin.getDataFolder(), "messages.yml")
-        );
-        prefix = messages.getString("prefix", "");
-    }
+    public boolean reload() {
+        try {
+            YamlConfiguration nextMessages = new YamlConfiguration();
+            nextMessages.load(new File(plugin.getDataFolder(), "messages.yml"));
+            String nextPrefix = nextMessages.getString("prefix");
+            if (nextPrefix == null || nextMessages.getConfigurationSection("messages") == null) {
+                throw new InvalidConfigurationException("messages.yml is missing its prefix or messages section.");
+            }
 
-    public Component message(String key, String... replacements) {
-        String text = prefix + messages.getString("messages." + key, "");
-        Map<String, String> values = new HashMap<>();
-
-        for (int index = 0; index + 1 < replacements.length; index += 2) {
-            values.put(replacements[index], replacements[index + 1]);
+            messages = nextMessages;
+            prefix = nextPrefix;
+            return true;
+        } catch (IOException | InvalidConfigurationException exception) {
+            plugin.getLogger().severe("Could not load messages.yml: " + exception.getMessage());
+            return false;
         }
+    }
 
-        return TextRenderer.render(text, values);
+    public void send(CommandSender sender, String key) {
+        send(sender, key, Map.of());
+    }
+
+    public void send(CommandSender sender, String key, Map<String, String> values) {
+        sender.sendMessage(TextRenderer.render(prefix + message(key), values));
+    }
+
+    private String message(String key) {
+        return messages.getString("messages." + key, "<#E34242>Missing message.");
     }
 }

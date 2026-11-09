@@ -8,4 +8,5 @@ messages:
   player-only: '<#E34242>Only players<#CACACA> can use /ping without a player name.'
   no-permission: '<#CACACA>You do not have <#E34242>permission<#CACACA>.'
   usage: '<#CACACA>Usage: <#E3B341>/ping [player|reload]'
-  reloaded: '<#CACACA>Messages <#B3E342>reloaded<#CACACA>.'
+  reload-success: '<#CACACA>Configuration <#B3E342>reloaded<#CACACA>.'
+  reload-failed: '<#CACACA>Configuration reload <#E34242>failed<#CACACA>. Check console for details.'

@@ -10,69 +10,69 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public final class PingCommand implements CommandExecutor, TabCompleter {
+    private final DjinqPing plugin;
     private final MessageManager messages;
 
-    public PingCommand(MessageManager messages) {
+    public PingCommand(DjinqPing plugin, MessageManager messages) {
+        this.plugin = plugin;
         this.messages = messages;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("djinqping.use")) {
-            sender.sendMessage(messages.message("no-permission"));
-            return true;
-        }
-
         if (args.length > 1) {
-            sender.sendMessage(messages.message("usage"));
+            messages.send(sender, "usage");
             return true;
         }
 
         if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             if (!sender.hasPermission("djinqping.reload")) {
-                sender.sendMessage(messages.message("no-permission"));
+                messages.send(sender, "no-permission");
                 return true;
             }
 
-            messages.reload();
-            sender.sendMessage(messages.message("reloaded"));
+            messages.send(sender, plugin.reloadPlugin() ? "reload-success" : "reload-failed");
+            return true;
+        }
+
+        if (!sender.hasPermission("djinqping.use")) {
+            messages.send(sender, "no-permission");
             return true;
         }
 
         if (args.length == 0) {
             if (!(sender instanceof Player player)) {
-                sender.sendMessage(messages.message("player-only"));
+                messages.send(sender, "player-only");
                 return true;
             }
 
-            sender.sendMessage(messages.message("your-ping", "ping", String.valueOf(player.getPing())));
+            messages.send(sender, "your-ping", Map.of("ping", String.valueOf(player.getPing())));
             return true;
         }
 
         if (!sender.hasPermission("djinqping.others")) {
-            sender.sendMessage(messages.message("no-permission"));
+            messages.send(sender, "no-permission");
             return true;
         }
 
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null) {
-            sender.sendMessage(messages.message("player-not-found"));
+            messages.send(sender, "player-not-found");
             return true;
         }
 
-        sender.sendMessage(messages.message(
-                "player-ping",
+        messages.send(sender, "player-ping", Map.of(
                 "player", target.getName(),
-                "ping", String.valueOf(target.getPing())
-        ));
+                "ping", String.valueOf(target.getPing())));
         return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length != 1 || !sender.hasPermission("djinqping.use")) {
+        if (args.length != 1 || (!sender.hasPermission("djinqping.use") && !sender.hasPermission("djinqping.reload"))) {
             return List.of();
         }
 
