@@ -1,6 +1,5 @@
 package dev.djinq.djinqping;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,7 +22,7 @@ public final class DjinqPing extends JavaPlugin {
         PingCommand pingCommand = new PingCommand(messages);
         command.setExecutor(pingCommand);
         command.setTabCompleter(pingCommand);
-        Bukkit.getConsoleSender().sendMessage(MiniMessage.miniMessage().deserialize(
+        Bukkit.getConsoleSender().sendMessage(TextRenderer.render(
                 "<#B3E342>djinqPing <#CACACA>made by <#B3E342>djinq "
                         + "<#CACACA>| <#B3E342>djinq.dev <#CACACA>| <#B3E342>Loaded"
         ));
