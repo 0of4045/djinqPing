@@ -26,11 +26,13 @@ Made by djinq ~ [djinq.dev](https://djinq.dev)
 | Permission | Description |
 | --- | --- |
 | `djinqping.use` | Allows `/ping`. |
-| `djinqping.others` | Allows `/ping <player>`. |
-| `djinqping.reload` | Allows `/ping reload`. |
+| `djinqping.others` | Allows `/ping <player>` together with `djinqping.use`. |
+| `djinqping.reload` | Allows `/ping reload` without requiring `djinqping.use`. |
 
 ## Configuration
 
 `messages.yml` contains one `prefix` setting. It is added automatically to every chat message. Use `/ping reload` after editing it.
+
+Existing customized messages are preserved during updates. Missing defaults are added on startup, with a backup before changes.
 
 Built for Paper 1.21.11 through 26.3. Use Java 21 for Paper 1.21.11, or Java 25 for Paper 26.1+.

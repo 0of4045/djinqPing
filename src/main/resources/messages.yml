@@ -2,11 +2,11 @@
 prefix: '<#B3E342>[<#DFFFAC>Ping<#B3E342>] '
 
 messages:
-  your-ping: '<#CACACA>Your ping is <#E3B341>%ping%ms<#CACACA>.'
-  player-ping: '<#E3B341>%player%<#CACACA>''s ping is <#E3B341>%ping%ms<#CACACA>.'
-  player-not-found: '<#CACACA>That player is <#E34242>not online<#CACACA>.'
-  player-only: '<#E34242>Only players<#CACACA> can use /ping without a player name.'
   no-permission: '<#CACACA>You do not have <#E34242>permission<#CACACA>.'
+  player-only: '<#E34242>Only players<#CACACA> can use /ping without a player name.'
   usage: '<#CACACA>Usage: <#E3B341>/ping [player|reload]'
   reload-success: '<#CACACA>Configuration <#B3E342>reloaded<#CACACA>.'
   reload-failed: '<#CACACA>Configuration reload <#E34242>failed<#CACACA>. Check console for details.'
+  your-ping: '<#CACACA>Your ping is <#E3B341>%ping%ms<#CACACA>.'
+  player-ping: '<#E3B341>%player%<#CACACA>''s ping is <#E3B341>%ping%ms<#CACACA>.'
+  player-not-found: '<#CACACA>That player is <#E34242>not online<#CACACA>.'

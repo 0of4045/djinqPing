@@ -1,5 +1,5 @@
 name: djinqPing
-version: 1.0.3
+version: 2.0.0
 main: dev.djinq.djinqping.DjinqPing
 api-version: '1.21'
 description: Lightweight ping command for Paper.
@@ -10,7 +10,6 @@ commands:
   ping:
     description: Shows a player's ping.
     usage: /ping [player|reload]
-    permission: djinqping.use
 
 permissions:
   djinqping.use:

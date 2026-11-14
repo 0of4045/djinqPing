@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class DjinqPing extends JavaPlugin {
     private MessageManager messages;
+
     @Override
     public void onEnable() {
         ResourceMigration.mergeMissingDefaults(this, "messages.yml");
@@ -27,8 +28,7 @@ public final class DjinqPing extends JavaPlugin {
         command.setTabCompleter(pingCommand);
         Bukkit.getConsoleSender().sendMessage(TextRenderer.render(
                 "<#B3E342>djinqPing <#CACACA>made by <#B3E342>djinq "
-                        + "<#CACACA>| <#B3E342>djinq.dev <#CACACA>| <#B3E342>Loaded"
-        ));
+                        + "<#CACACA>| <#B3E342>djinq.dev <#CACACA>| <#B3E342>Loaded"));
     }
 
     public boolean reloadPlugin() {
